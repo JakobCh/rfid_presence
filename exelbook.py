@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+Ôªø#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from openpyxl import Workbook
@@ -18,11 +18,11 @@ class exelbook():
 		for i in range(0, len(datalist)):
 			key = chr(i + ord("A")) + str(number)
 			#print(key)
-			self.Worksheet[key] = datalist[i]
+			self.Worksheet[key] = datalist[i].decode("utf-8")
 		
-	def setLine(self, letter, datalist): #den h‰r s‰tter alltsÂ upifrÂn och ner
+	def setLine(self, letter, datalist): #den h√§r s√§tter allts√• upifr√•n och ner
 		for i in range(0, len(datalist)):
-			key = letter + str(i+1) #fˆr att excels celler bˆrjar pÂ 1 och inte 0
+			key = letter + str(i+1) #f√•r att excels celler b√∂rjar p√• 1 och inte 0
 			#print(key)
 			self.Worksheet[key] = datalist[i]
 			
@@ -36,7 +36,7 @@ class exelbook():
 		
 	def advancedwrite(self, listoflists):
 		currentRow = 1
-		self.setRow(currentRow, ["In/Ut", "Datum", "Stampel", "Lektionstid", "Franvaro", "Anm"])
+		self.setRow(currentRow, ["In/Ut", "Datum", "St√§mpel", "Lektionstid", "Fr√•nvaro", "Anm"])
 		currentRow = currentRow + 1
 		for i in listoflists:
 			self.setRow(currentRow, i)

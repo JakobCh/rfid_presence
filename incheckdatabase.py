@@ -38,8 +38,11 @@ class incheckdatabase():
 		if not namechecktemp == []: #om vi hitta en inceckning från namenet
 			inorout = namechecktemp[2] #sät inorout till den sista incheckninges värde
 			inorout = not inorout #invertera det så om man har gått in så går man nu ut
+			lastcheckintime = namechecktemp[1]
+		else:
+			lastcheckintime = 0
 		
-		if time.time() - namechecktemp[1] > self.checkincooldown: #om det har gått self.checkincooldown sedan sista incheckningen så
+		if time.time() - lastcheckintime > self.checkincooldown: #om det har gått self.checkincooldown sedan sista incheckningen så
 			self.data.append([name, tim, inorout]) #läg in en ny checkning
 			self.save() #spara databasen
 			return inorout, False #vi sickar tilbacka om det var en incheckning eller en utcheckning och att tagen inte var på cooldown
@@ -103,7 +106,7 @@ class incheckdatabase():
 		timeend = 0
 		names = self.getNames()
 		oldname = ""
-		print(names)
+		#print(names)
 		for name in names:
 			for i in self.data:
 				if i[0] == name:
@@ -117,7 +120,7 @@ class incheckdatabase():
 						oldname = name
 			
 			if timeend == 0 and not timestart == 0:
-				print(oldname + ": " + self.timeformat2(timestart) + " - " + (" " * len(self.timeformat2(timestart))) + " " + self.timeformat3(timestart))
+				print(name + ": " + self.timeformat2(timestart) + " - " + (" " * len(self.timeformat2(timestart))) + " " + self.timeformat3(timestart))
 			
 	def nametoexellist(self, name):
 		#listlist = []
@@ -162,7 +165,7 @@ class incheckdatabase():
 		for name in names:
 			cla = tagdb.getClassByName(name)
 			mybook = exelbook()
-			mybook.setTitle(name)
+			mybook.setTitle(name.decode("utf-8"))
 			print(directory + cla + "/" + name + ".xlsx")
 			mybook.advancedwrite(self.nametoexellist(name))
 			if not os.path.exists(directory + cla + "/"):

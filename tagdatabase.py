@@ -49,13 +49,12 @@ class tagdatabase():
 		return str(uid[0]) + str(uid[1]) + str(uid[2]) + str(uid[3])
 		
 	def addTag(self, tagid, name, cla): #tagid name class
-		if not tagid.isalpha() and name.isalpha():
-			user = self.isInTagList(tagid)
-			if user:
-				self.tags.remove([tagid, name, cla])	
-				self.tags.append([tagid, name, cla])
-			else:
-				self.tags.append([tagid, name, cla])
+		user = self.isInTagList(tagid)
+		if user:
+			self.tags.remove([tagid, name, cla])	
+			self.tags.append([tagid, name, cla])
+		else:
+			self.tags.append([tagid, name, cla])
 			
 	def removeTag(self, tagid):
 		try:

@@ -52,7 +52,7 @@ def addTag():
 				choise = raw_input()
 				if choise in yesarray:
 					print("Enter a new name for: " + tagid)
-					newname = raw_input().title()
+					newname = raw_input().title().decode("utf-8")
 					print("Enter a class for: " + newname + " : " + tagid)
 					cla = raw_input().upper()
 					tagdb.addTag(tagid, newname, cla)
@@ -185,7 +185,10 @@ if len(sys.argv) == 2:
 			elif choise == 4:
 				removeTag()
 			elif choise == 5:
-				manualRemoveTag()
+				try:
+					manualRemoveTag()
+				except:
+					1+1
 			elif choise == 6:
 				ReadOnce()
 			elif choise == 7:
