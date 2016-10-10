@@ -16,6 +16,9 @@ from LcdControler import LcdControler
 databasefile = "databases/tagdatabase.pickle"  #[tagid,name,class]
 databasefile2 = "databases/inoroutdatabase.pickle" #[name, time, in/out]
 
+if not os.path.exists("databases/"):
+	os.makedirs("databases/")
+
 yesarray = ["y", "Y", "yes", "Yes"]
 noarray = ["n", "N", "no", "No"]
 
