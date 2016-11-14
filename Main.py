@@ -273,4 +273,5 @@ if len(sys.argv) == 2:
 else:
 	help()
 	
+catchstop()
 	
