@@ -3,6 +3,6 @@
 A rfid check-In system made for schools
 
 
-Use "Main.py help" for information
+Use 'Main.py help' for information
 
 
