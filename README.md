@@ -15,6 +15,4 @@ Check Install Instructions.txt for help with install
 
 Use 'Main.py help' for information
 
-To use the update script move it to your home directory first
-
 
