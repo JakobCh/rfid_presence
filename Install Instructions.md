@@ -24,6 +24,9 @@ Install python-dev and git
 	
 Install openpyxl #excel python library
 	sudo pip install openpyxl
+	
+Install nohup #might be installed by default?
+	sudo apt-get install nohup
 
 Install SPI-Py
 	cd ~
@@ -43,7 +46,7 @@ Get the MFRC522 library
 	rm -rf MFRC522-python/
 	
 Add the script to autorun:
-	echo "python ~/rfid_presence/Main.py run \n" >> ~/.bashrc
+	echo "python -u ~/rfid_presence/Main.py run" >> ~/.bashrc
 	
 
 
