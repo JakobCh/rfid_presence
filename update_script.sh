@@ -1,3 +1,4 @@
+cd ~
 echo "Moving old.."
 cp -r rfid_presence rfid_presence_old
 rm -rf rfid_presence
