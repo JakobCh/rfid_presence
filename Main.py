@@ -33,15 +33,14 @@ def catchstop(a,b): #om processen stopas så körs den här först innan den stängs 
 	
 def addTag():
 	print("Put a tag on the reader")
-	#rfid.waitTag()
-	#tagid = rfid.getUniqueId()
+	
 	while True:
 	
-		(status,TagType) = MIFAREREADER.MFRC522_Request(MIFAREREADER.PICC_REQIDL)
+		(status,TagType) = MIFAREREADER.MFRC522_Request(MIFAREREADER.PICC_REQIDL) #is a tag there
 		if status == MIFAREREADER.MI_OK:
 			print("Found tag")
 	
-		(status,uid) = MIFAREREADER.MFRC522_Anticoll()
+		(status,uid) = MIFAREREADER.MFRC522_Anticoll() #get uid
 		#tagid = "2B53B49B"
 		if status == MIFAREREADER.MI_OK:
 			tagid = tagdb.uidToTagid(uid)
@@ -121,11 +120,10 @@ def ReadOnce():
 		if status == MIFAREREADER.MI_OK:
 			print("Found tag, Tag type: " + str(TagType))
 		
-		#if not rfid.readMifare(): #is it a Mifare tag? https://en.wikipedia.org/wiki/MIFARE
 		(status,uid) = MIFAREREADER.MFRC522_Anticoll()
 		if status == MIFAREREADER.MI_OK:
 			
-			tagid = tagdb.uidToTagid(uid)
+			tagid = tagdb.uidToTagid(uid) #convert uid to tagid ()
 			
 			user = tagdb.isInTagList(tagid) #check if the Tag is in the Tag list, if so it returns the name
 			if user:
@@ -144,6 +142,8 @@ def help():
 	print("	add	länka en taggar till ett namn")
 	print("	remove	ta bort en tagg från databasen")
 	print("	menu	öppnar en menu för olika functioner")
+	print("	dump	dumpar informationen lagrad i databasen till exel filer")
+	print("	cleanup <Dagar>	tar bort alla incheckningar som är mer än 10 dagar gammla eller <Dagar> gammla")
 
 signal.signal(signal.SIGINT, catchstop)
 
@@ -160,6 +160,13 @@ if len(sys.argv) == 2:
 		removeTag()
 	elif sys.argv[1] == "help":
 		help()
+	elif sys.argv[1] == "cleanup":
+		if len(sys.argv) == 3:
+			checkbase.cleanup(days=int(sys.argv[2]))
+		else:
+			checkbase.cleanup()
+	elif sys.argv[1] == "dump":
+		checkbase.createexelfiles(tagdb)
 	elif sys.argv[1] == "menu":
 		while True:
 			#sys.clear()

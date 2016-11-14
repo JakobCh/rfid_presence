@@ -21,6 +21,12 @@ class incheckdatabase():
 		self.maxCheckinTime = self.lessontime + 60*10 #lektions tid + 10
 		self.checkincooldown = 60 #1 minut
 		
+	def cleanup(self, days=10):
+		currenttime = time.time()
+		for i in self.data:
+			if i[1] < currenttime - 60*60*24*days: #days dagar gammla (default 10)
+				self.data.remove(i)
+		
 	def save(self):
 		with open(self.filepath, "w") as f: #öppna database filen 
 			pickle.dump(self.data, f) #ta self.data och spara i filen
