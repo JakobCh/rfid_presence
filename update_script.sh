@@ -4,7 +4,7 @@ cp -r rfid_presence rfid_presence_old
 rm -rf rfid_presence
 echo "Getting new.."
 git clone https://github.com/JakobCh/rfid_presence.git
-if [! -d "rfid_presence"]; then
+if [ -d "rfid_presence"]; then
 	echo "Copying over databases.."
 	cp -r rfid_presence_old/databases/ rfid_presence/
 	cp -r rfid_presence_old/exel/ rfid_presence/
