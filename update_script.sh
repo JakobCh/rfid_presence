@@ -15,7 +15,7 @@ if [ -d "$JCDIR" ]; then
 	echo "Removing old.."
 	rm -rf rfid_presence_old
 else
-	echo "cound not fetch from github"
+	echo "couldn't not fetch from github"
 
 fi
 
