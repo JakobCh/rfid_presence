@@ -43,6 +43,9 @@ Install openpyxl #excel python library
 
 	sudo pip install openpyxl
 
+Install ncftp
+	sudo apt-get install ncftp
+	
 Install SPI-Py
 
 	'cd ~

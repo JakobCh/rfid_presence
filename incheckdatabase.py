@@ -26,6 +26,8 @@ class incheckdatabase():
 		for i in self.data:
 			if i[1] < currenttime - 60*60*24*days: #days dagar gammla (default 10)
 				self.data.remove(i)
+				
+		
 		
 	def save(self):
 		with open(self.filepath, "wb") as f: #öppna database filen 

@@ -5,13 +5,14 @@ import sys
 import os
 import time
 import pickle #library used to save variables to file
-#import rfid #our rfid module
 import RPi.GPIO as GPIO
 import signal
 import MFRC522
 from tagdatabase import tagdatabase
 from incheckdatabase import incheckdatabase
 from LcdControler import LcdControler
+import thread
+from autothread import autothread
 
 databasefile = "databases/tagdatabase.pickle"  #[tagid,name,class]
 databasefile2 = "databases/inoroutdatabase.pickle" #[name, time, in/out]
@@ -26,6 +27,7 @@ def catchstop(a,b): #om processen stopas så körs den här först innan den stängs 
 	print("Stop signal detected")
 	GPIO.cleanup() #fixar till gpio portarna
 	lcd.lcd_stop() #sickar signal till lcd displayen att cleara skärmen
+	lcd.lcd_string("Not running!", lcd.LCD_LINE_1)
 	print("Saving..")
 	checkbase.save()
 	tagdb.save()
@@ -222,7 +224,7 @@ if len(sys.argv) == 2:
 				print tagdb.getAllClasses()
 				
 	elif sys.argv[1] == "run":
-		checkbase = incheckdatabase(databasefile2)
+		thread.start_new_thread(autothread, (checkbase, tagdb))
 		print("Jakobs rfid reader TM")
 		print("Waiting for tag..")
 		while True:
@@ -264,8 +266,7 @@ if len(sys.argv) == 2:
 					lcd.lcd_string(":(", lcd.LCD_LINE_2)
 					
 				time.sleep(2)
-					
-			checkbase.updateMaxTime() #kolla om någon har varit inne längre än en lektion
+				
 			lcd.lcd_string("Valkommen!", lcd.LCD_LINE_1) #skriv till första raden på lcdn
 			lcd.lcd_string("Lagg pa din tag", lcd.LCD_LINE_2) #skriv till andra raden på lcdn
 	else:
