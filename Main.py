@@ -26,6 +26,10 @@ def catchstop(a,b): #om processen stopas så körs den här först innan den stängs 
 	print("Stop signal detected")
 	GPIO.cleanup() #fixar till gpio portarna
 	lcd.lcd_stop() #sickar signal till lcd displayen att cleara skärmen
+	print("Saving..")
+	checkbase.save()
+	tagdb.save()
+	print("Save done")
 	print("Quiting")
 	sys.exit()
 	
@@ -145,7 +149,8 @@ def help():
 	print("	dump	dumpar informationen lagrad i databasen till exel filer")
 	print("	cleanup <Dagar>	tar bort alla incheckningar som är mer än 10 dagar gammla eller <Dagar> gammla")
 
-signal.signal(signal.SIGINT, catchstop)
+signal.signal(signal.SIGINT, catchstop) #om vi blir sickade en SIGINT (Ctrl-C) så kör funktionen catchstop
+signal.signal(signal.SIGTERM, catchstop) #om vi blir sickade en SIGTERM (pkill) så kör funktionen catchstop
 
 MIFAREREADER = MFRC522.MFRC522()
 checkbase = incheckdatabase(databasefile2)

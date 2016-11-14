@@ -28,8 +28,8 @@ class incheckdatabase():
 				self.data.remove(i)
 		
 	def save(self):
-		with open(self.filepath, "w") as f: #öppna database filen 
-			pickle.dump(self.data, f) #ta self.data och spara i filen
+		with open(self.filepath, "wb") as f: #öppna database filen 
+			pickle.dump(self.data, f, 2) #ta self.data och spara i filen
 			
 	def load(self):
 		try: #försök

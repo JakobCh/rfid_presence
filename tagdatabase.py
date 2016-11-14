@@ -17,8 +17,8 @@ class tagdatabase():
 			self.tags = []
 			
 	def save(self):
-		with open(self.databasefile, "w") as f:
-			pickle.dump(self.tags, f)
+		with open(self.databasefile, "wb") as f:
+			pickle.dump(self.tags, f, 2)
 			
 	def isInTagList(self, key):
 		for i in self.tags:
