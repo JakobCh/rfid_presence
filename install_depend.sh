@@ -14,4 +14,11 @@ git clone https://github.com/mxgxw/MFRC522-python.git
 cp MFRC522-python/MFRC522.py rfid_presence/
 rm -rf MFRC522-python/
 
-echo "python -u ~/rfid_presence/Main.py run" >> ~/.bashrc
+echo "cd ~/rfid_presence/" >> ~/.bashrc
+echo 'if pgrep "python" > /dev/null' >> ~/.bashrc
+echo 'then' >> ~/.bashrc
+echo 'echo "rfid_presence already running"' >> ~/.bashrc 
+echo 'else' >> ~/.bashrc
+echo "nohup python -u Main.py run &" >> ~/.bashrc
+echo "fi" >> ~/.bashrc
+echo "cd ~" >> ~/.bashrc

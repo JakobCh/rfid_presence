@@ -16,7 +16,11 @@ if [ -d "$JCDIR" ]; then
 	rm -rf rfid_presence_old
 else
 	echo "couldn't not fetch from github"
-
+	cp -r rfid_presence_old rfid_presence
+	rm -rf rfid_presence_old
 fi
+
+cd ~
+cd ~/rfid_presence
 
 echo "Done!"
