@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 import smbus
 import time
+import config
 
 class LcdControler():
 	def __init__(self):
 		# Define some device parameters
-		self.I2C_ADDR		= 0x27 # I2C device address
+		#self.I2C_ADDR = 0x27 # I2C device address
+		self.I2C_ADDR = config.lcdi2caddr
 		self.LCD_WIDTH = 16		 # Maximum characters per line
 
 		# Define some device constants
@@ -17,9 +19,11 @@ class LcdControler():
 		self.LCD_LINE_2 = 0xC0 # LCD RAM address for the 2nd line
 		self.LCD_LINE_3 = 0x94 # LCD RAM address for the 3rd line
 		self.LCD_LINE_4 = 0xD4 # LCD RAM address for the 4th line
-
-		self.LCD_BACKLIGHT = 0x08		# On
-		#self.LCD_BACKLIGHT = 0x00		# Off
+	
+		if config.lcdbacklight:
+			self.LCD_BACKLIGHT = 0x08		# On
+		else:
+			self.LCD_BACKLIGHT = 0x00		# Off
 
 		self.ENABLE = 0b00000100 # Enable bit
 
@@ -29,7 +33,8 @@ class LcdControler():
 
 		#Open I2C interface
 		#self.bus = smbus.SMBus(0)		# Rev 1 Pi uses 0
-		self.bus = smbus.SMBus(1) # Rev 2 Pi uses 1
+		#self.bus = smbus.SMBus(1) # Rev 2 Pi uses 1
+		self.bus = smbus.SMBus(config.lcdsmbus)
 		
 		self.lcd_init()
 		

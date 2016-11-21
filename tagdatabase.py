@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pickle
+import config 
 
 class tagdatabase():
-	def __init__(self, file):
+	def __init__(self):
 		self.tags = []
-		self.databasefile = file
+		self.databasefile = config.databasefolder + config.tagdatabasefile
 		self.load()
 		
 		

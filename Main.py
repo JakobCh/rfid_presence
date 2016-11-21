@@ -1,5 +1,13 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+
+print("Loading librarys..")
+
+from LcdControler import LcdControler
+lcd = LcdControler()
+lcd.lcd_init()
+lcd.lcd_string("Starting...", lcd.LCD_LINE_1)
 
 import sys
 import os
@@ -10,18 +18,23 @@ import signal
 import MFRC522
 from tagdatabase import tagdatabase
 from incheckdatabase import incheckdatabase
-from LcdControler import LcdControler
 import thread
 from autothread import autothread
+import config
+print("Done Loading librarys")
 
-databasefile = "databases/tagdatabase.pickle"  #[tagid,name,class]
-databasefile2 = "databases/inoroutdatabase.pickle" #[name, time, in/out]
+#databasefile = "databases/tagdatabase.pickle"  #[tagid,name,class]
+#databasefile2 = "databases/inoroutdatabase.pickle" #[name, time, in/out]
 
-if not os.path.exists("databases/"):
-	os.makedirs("databases/")
+if not os.path.exists(config.databasefolder):
+	os.makedirs(config.databasefolder)
 
 yesarray = ["y", "Y", "yes", "Yes"]
 noarray = ["n", "N", "no", "No"]
+
+#init led display
+
+
 
 def catchstop(a,b): #om processen stopas så körs den här först innan den stängs av
 	print("Stop signal detected")
@@ -142,23 +155,23 @@ def ReadOnce():
 
 			
 def help():
-	print("Jakob Christofferssons Rfid närvaro program")
-	print("Andvänding: Main.py [Augment]")
-	print("	run	kör närvaro sekvensen")
-	print("	add	länka en taggar till ett namn")
-	print("	remove	ta bort en tagg från databasen")
-	print("	menu	öppnar en menu för olika functioner")
+	print("Jakob Christofferssons Rfid nÃ¤rvaro program")
+	print("AndvÃ¤nding: Main.py [Augment]")
+	print("	run	kÃ¶r nÃ¤rvaro sekvensen")
+	print("	add	lÃ¤nka en taggar till ett namn")
+	print("	remove	ta bort en tagg frÃ¥n databasen")
+	print("	menu	Ã¶ppnar en menu med olika functioner")
 	print("	dump	dumpar informationen lagrad i databasen till exel filer")
-	print("	cleanup <Dagar>	tar bort alla incheckningar som är mer än 10 dagar gammla eller <Dagar> gammla")
+	print("	cleanup <Dagar>	tar bort alla incheckningar som Ã¤r mer Ã¤n 10 dagar gammla eller <Dagar> gammla")
 
 signal.signal(signal.SIGINT, catchstop) #om vi blir sickade en SIGINT (Ctrl-C) så kör funktionen catchstop
 signal.signal(signal.SIGTERM, catchstop) #om vi blir sickade en SIGTERM (pkill) så kör funktionen catchstop
 
 MIFAREREADER = MFRC522.MFRC522()
-checkbase = incheckdatabase(databasefile2)
-tagdb = tagdatabase(databasefile)
-lcd = LcdControler()
-lcd.lcd_init()
+checkbase = incheckdatabase()
+tagdb = tagdatabase()
+#lcd = LcdControler()
+#lcd.lcd_init()
 
 if len(sys.argv) == 2:
 	if sys.argv[1] == "add":
@@ -174,6 +187,8 @@ if len(sys.argv) == 2:
 			checkbase.cleanup()
 	elif sys.argv[1] == "dump":
 		checkbase.createexelfiles(tagdb)
+	elif sys.argv[1] == "ftptest":
+		autothread(checkbase, tagdb)
 	elif sys.argv[1] == "menu":
 		while True:
 			#sys.clear()
@@ -262,7 +277,7 @@ if len(sys.argv) == 2:
 					
 				else:
 					print("Unknown tag: " + tagid)
-					lcd.lcd_string("Okänd tag", lcd.LCD_LINE_1)
+					lcd.lcd_string("OkÃ¤nd tag", lcd.LCD_LINE_1)
 					lcd.lcd_string(":(", lcd.LCD_LINE_2)
 					
 				time.sleep(2)

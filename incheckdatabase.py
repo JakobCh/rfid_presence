@@ -6,14 +6,15 @@ import time
 import math
 import os
 from exelbook import exelbook
+import config
 
 class incheckdatabase():
-	def __init__(self, file):
-		self.filepath = file #sätter self.filepath till argumentet som sickades när classen skapades 
+	def __init__(self):
+		self.filepath = config.databasefolder + config.incheckdatabasefile #sät databas filen till den i configen
 		self.data = [] #här lagrar vi al skit
 		#datan ser ut såhär =
 		#[namn, tid, in eller ut checkning]
-		self.savepath = "exel/"
+		self.savepath = config.exelsavepath
 		
 		
 		self.load() #kör load function för att ladda in databas filen in i self.data
@@ -166,7 +167,7 @@ class incheckdatabase():
 		currenttime = time.time()
 		week = str(self.timeformat4(currenttime))
 		year = str(self.timeformat5(currenttime))
-		directory = self.savepath + year + "/Vecka " + week + "/"
+		directory = self.savepath + year + '/' + config.exelweekname + ' ' + week + "/"
 		if not os.path.exists(directory):
 			os.makedirs(directory)
 			

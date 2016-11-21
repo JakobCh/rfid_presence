@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from openpyxl import Workbook
+import config
 
 class exelbook():
 	def __init__(self):
@@ -36,7 +37,7 @@ class exelbook():
 		
 	def advancedwrite(self, listoflists):
 		currentRow = 1
-		self.setRow(currentRow, ["In/Ut", "Datum", "Stämpel", "Lektionstid", "Frånvaro", "Anm"])
+		self.setRow(currentRow, config.exelwords)
 		currentRow = currentRow + 1
 		for i in listoflists:
 			self.setRow(currentRow, i)
