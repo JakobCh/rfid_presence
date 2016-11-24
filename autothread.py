@@ -5,9 +5,9 @@ import time
 import os
 import config
 
-user = config.ftpuser
-passwd = config.ftppasswd
-serverip = config.ftpserverip
+#user = config.ftpuser
+#passwd = config.ftppasswd
+#serverip = config.ftpserverip
 
 def threadprint(st):
 	print("THREAD:" + st)
@@ -25,8 +25,9 @@ def autothread(checkbase, tagdb, inst=False):
 			threadprint("Creating new exel files")
 			checkbase.createexelfiles(tagdb) #skapa nya exel filer
 			
-			threadprint("Sending exel files to ftp server..")
-			os.system('ncftpput -R -u "' + user + '" -p "' + passwd + '" ' + serverip + ' ' + config.ftpfolder + ' ' + checkbase.savepath)
+			threadprint("Sending exel files to server..")
+			#os.system('ncftpput -R -u "' + user + '" -p "' + passwd + '" ' + serverip + ' ' + config.ftpfolder + ' ' + checkbase.savepath)
+			os.system('cp -r exel/ ' + config.ftpfolder)
 			threadprint("DONE")
 			lastwritetime = time.time() #sätt ny tid
 			if inst:
