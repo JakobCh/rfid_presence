@@ -19,7 +19,7 @@ def autothread(checkbase, tagdb, inst=False):
 		
 		if lastwritetime + config.ftpupdatetime < time.time() or inst: #om det har gått 10 minuter sen sista gången
 			threadprint("Removing old exel files")
-			os.system("rf -rf " + checkbase.savepath) #ta bort alla exel filer
+			os.system("rm -rf " + checkbase.savepath) #ta bort alla exel filer
 			threadprint("Cleaning out old checkins")
 			checkbase.cleanup() #ta bort gammla in/ut checkningar
 			threadprint("Creating new exel files")
