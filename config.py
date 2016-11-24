@@ -13,7 +13,7 @@ exelwords = ["In/Ut", "Datum", "Stämpel", "Lektionstid", "Frånvaro", "Anm"]
 ftpuser = "root"
 ftppasswd = "nas4free"
 ftpserverip = "10.1.1.15"
-ftpfolder = '/Närvaro/'
+ftpfolder = '/mnt/Närvaro/'
 ftpupdatetime = 60*10 #i sekunder (10 min default)
 
 
