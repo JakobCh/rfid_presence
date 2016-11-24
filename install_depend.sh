@@ -7,12 +7,12 @@ git clone https://github.com/lthiery/SPI-Py.git
 cd SPI-Py/
 sudo python setup.py install
 cd ~
-rm -rf SPI-Py/
+sudo rm -rf SPI-Py/
 
 cd ~
 git clone https://github.com/mxgxw/MFRC522-python.git
 cp MFRC522-python/MFRC522.py rfid_presence/
-rm -rf MFRC522-python/
+sudo rm -rf MFRC522-python/
 
 echo "cd ~/rfid_presence/" >> ~/.bashrc
 echo 'if pgrep "python" > /dev/null' >> ~/.bashrc
