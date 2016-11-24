@@ -1,6 +1,7 @@
 sudo apt-get update
 #sudo apt-get upgrade	
-sudo apt-get install python-dev git openpyxl ncftp
+sudo apt-get install python-dev git ncftp
+pip install openpyxl
 
 cd ~
 git clone https://github.com/lthiery/SPI-Py.git
