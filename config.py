@@ -10,10 +10,10 @@ exelweekname = "Vecka"
 exelwords = ["In/Ut", "Datum", "Stämpel", "Lektionstid", "Frånvaro", "Anm"]
 
 #FTP
-ftpuser = "root"
-ftppasswd = "nas4free"
+ftpuser = "narvaro"
+ftppasswd = "rfidnas"
 ftpserverip = "10.1.1.15"
-ftpfolder = '/mnt/Närvaro/'
+ftpfolder = '/mnt/Storage/Larare/narvaro/'
 ftpupdatetime = 60*10 #i sekunder (10 min default)
 
 
