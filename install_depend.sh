@@ -1,6 +1,6 @@
 sudo apt-get update
 #sudo apt-get upgrade	
-sudo apt-get install python-dev git ncftp
+sudo apt-get install python-dev git ncftp nohup
 pip install openpyxl
 
 cd ~
