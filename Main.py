@@ -190,6 +190,7 @@ if len(sys.argv) == 2:
 	elif sys.argv[1] == "ftptest":
 		autothread(checkbase, tagdb)
 	elif sys.argv[1] == "menu":
+		lcd.lcd_string("Being Configured", lcd.LCD_LINE_1)
 		while True:
 			#sys.clear()
 			print("Menu:")
