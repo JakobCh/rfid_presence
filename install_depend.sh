@@ -23,3 +23,5 @@ echo 'else' >> ~/.bashrc
 echo "nohup python -u Main.py run &" >> ~/.bashrc
 echo "fi" >> ~/.bashrc
 echo "cd ~" >> ~/.bashrc
+
+#echo narvaro | sudo sshfs -o allow_other narvaro@10.1.1.15:/mnt/Storage/Larare/ /mnt/Larare/
