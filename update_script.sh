@@ -14,6 +14,8 @@ if [ -d "$JCDIR" ]; then
 	cp rfid_presence_old/MFRC522.py rfid_presence/
 	echo "Removing old.."
 	rm -rf rfid_presence_old
+	chmod +x ~/rfid_presence/*.sh
+	
 else
 	echo "couldn't not fetch from github"
 	cp -r rfid_presence_old rfid_presence
