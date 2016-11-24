@@ -31,6 +31,6 @@ def autothread(checkbase, tagdb, inst=False):
 			lastwritetime = time.time() #sätt ny tid
 			if inst:
 				return
-			
+	time.sleep(10)
 			
 
