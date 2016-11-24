@@ -70,7 +70,7 @@ def addTag():
 				choise = raw_input()
 				if choise in yesarray:
 					print("Enter a new name for: " + tagid)
-					newname = raw_input().title().decode("utf-8")
+					newname = raw_input().decode('utf-8').title().encode("utf-8")
 					print("Enter a class for: " + newname + " : " + tagid)
 					cla = raw_input().upper()
 					tagdb.addTag(tagid, newname, cla)
@@ -86,7 +86,7 @@ def addTag():
 					return False
 			else:
 				print("Enter a new name for: " + tagid)
-				newname = raw_input().title()
+				newname = raw_input().decode('utf-8').title().encode("utf-8")
 				print("Enter a class for: " + newname + " : " + tagid)
 				cla = raw_input().upper()
 				tagdb.addTag(tagid, newname, cla)
@@ -98,7 +98,7 @@ def manualAddTag():
 	print("Enter id:")
 	tagid = raw_input()
 	print("Enter name:")
-	newname = raw_input().title()
+	newname = raw_input().decode('utf-8').title().encode("utf-8")
 	print("Enter class:")
 	cla = raw_input().upper()
 

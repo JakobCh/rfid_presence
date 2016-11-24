@@ -71,8 +71,8 @@ class tagdatabase():
 			#print(i[1]) #will print all the names
 			print('"' + i[0] + '":"' + i[1] + '":"' + i[2] + '"')
 			
-	def fixCap(self):
+	def fixCap(self): #fixes capitilation errors
 		for i in self.tags:
 			tempstring = i[1]
 			tempstring = tempstring.decode('utf-8').title()
-			i[1] = tempstring
+			i[1] = tempstring.encode('utf-8')
