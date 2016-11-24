@@ -12,12 +12,12 @@ serverip = config.ftpserverip
 def threadprint(st):
 	print("THREAD:" + st)
 
-def autothread(checkbase, tagdb):
+def autothread(checkbase, tagdb, inst=False):
 	lastwritetime = time.time()
 	while 1:
 		checkbase.updateMaxTime() #kolla om någon har varit inne längre än en lektion
 		
-		if lastwritetime + config.ftpupdatetime < time.time(): #om det har gått 10 minuter sen sista gången
+		if lastwritetime + config.ftpupdatetime < time.time() or inst: #om det har gått 10 minuter sen sista gången
 			threadprint("Removing old exel files")
 			os.system("rf -rf " + checkbase.savepath) #ta bort alla exel filer
 			threadprint("Cleaning out old checkins")
@@ -29,6 +29,8 @@ def autothread(checkbase, tagdb):
 			os.system('ncftpput -R -u "' + user + '" -p "' + passwd + '" ' + serverip + ' ' + config.ftpfolder + ' ' + checkbase.savepath)
 			threadprint("DONE")
 			lastwritetime = time.time() #sätt ny tid
+			if inst:
+				return
 			
 			
 

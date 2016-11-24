@@ -163,6 +163,7 @@ def help():
 	print("	menu	Ã¶ppnar en menu med olika functioner")
 	print("	dump	dumpar informationen lagrad i databasen till exel filer")
 	print("	cleanup <Dagar>	tar bort alla incheckningar som Ã¤r mer Ã¤n 10 dagar gammla eller <Dagar> gammla")
+	print("	ftptest	generates exel files and tries to upload them")
 
 signal.signal(signal.SIGINT, catchstop) #om vi blir sickade en SIGINT (Ctrl-C) så kör funktionen catchstop
 signal.signal(signal.SIGTERM, catchstop) #om vi blir sickade en SIGTERM (pkill) så kör funktionen catchstop
@@ -188,7 +189,7 @@ if len(sys.argv) == 2:
 	elif sys.argv[1] == "dump":
 		checkbase.createexelfiles(tagdb)
 	elif sys.argv[1] == "ftptest":
-		autothread(checkbase, tagdb)
+		autothread(checkbase, tagdb, inst=True)
 	elif sys.argv[1] == "menu":
 		lcd.lcd_string("Being Configured", lcd.LCD_LINE_1)
 		while True:
