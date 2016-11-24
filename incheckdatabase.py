@@ -181,3 +181,7 @@ class incheckdatabase():
 				os.makedirs(directory + cla + "/")
 			mybook.saveas(directory + cla + "/" + name + ".xlsx")
 				
+				
+if __name__ == "__main__":
+	testdb = incheckdatabase()
+	testdb.nicedump()

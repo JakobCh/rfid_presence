@@ -70,3 +70,9 @@ class tagdatabase():
 			#print(i[0]) #will print all the Tag ids
 			#print(i[1]) #will print all the names
 			print('"' + i[0] + '":"' + i[1] + '":"' + i[2] + '"')
+			
+	def fixCap(self):
+		for i in self.tags:
+			tempstring = i[1]
+			tempstring = tempstring.decode('utf-8').title()
+			i[1] = tempstring

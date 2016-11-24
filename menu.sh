@@ -8,7 +8,8 @@ done
 
 python Main.py menu
 wait
-nohup python -u main.py &
+sleep 1
+./start_rfid_presence.sh
 
 
 
