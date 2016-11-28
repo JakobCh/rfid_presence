@@ -154,6 +154,11 @@ def ReadOnce():
 			break
 
 			
+def getNiceTime():
+	nicetime = time.strftime("%H:%M")
+	return nicetime
+			
+			
 def help():
 	print("Jakob Christofferssons Rfid närvaro program")
 	print("Andvänding: Main.py [Augment]")
@@ -270,12 +275,12 @@ if len(sys.argv) == 2:
 							print("User:" + user + " Tag:" + tagid + " State: IN")
 							lcd.lcd_string(shortuser, lcd.LCD_LINE_1)
 							#lcd.lcd_string("State: IN", lcd.LCD_LINE_2)
-							lcd.lcd_string("Du kommer IN", lcd.LCD_LINE_2)
+							lcd.lcd_string("IN " + getNiceTime(), lcd.LCD_LINE_2)
 						else:
 							print("User:" + user + " Tag:" + tagid + " State: OUT")
 							lcd.lcd_string(shortuser, lcd.LCD_LINE_1)
 							#lcd.lcd_string("State: OUT", lcd.LCD_LINE_2)
-							lcd.lcd_string("Du gar UT", lcd.LCD_LINE_2)
+							lcd.lcd_string("UT " + getNiceTime(), lcd.LCD_LINE_2)
 					
 				else:
 					print("Unknown tag: " + tagid)
