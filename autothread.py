@@ -25,10 +25,20 @@ def autothread(checkbase, tagdb, inst=False):
 			threadprint("Creating new exel files")
 			checkbase.createexelfiles(tagdb) #skapa nya exel filer
 			
-			threadprint("Sending exel files to server..")
-			#os.system('ncftpput -R -u "' + user + '" -p "' + passwd + '" ' + serverip + ' ' + config.ftpfolder + ' ' + checkbase.savepath)
-			os.system('cp -r exel/ ' + config.ftpfolder)
-			threadprint("DONE")
+			threadprint("Mounting sftp server..")
+			
+			#mount file system..
+			os.system('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin <<< "' + config.ftppasswd + '"')
+			
+			if os.path.isdir(config.ftpfolder): #if the mount succeeded
+				os.system('cp -r exel/ ' + config.ftpfolder)
+			
+				#unmount file system
+				os.system('umount ' + config.ftpmountpoint)
+			
+				threadprint("DONE")
+			else
+				threadprint("COULD NOT MOUNT SFTP")
 			lastwritetime = time.time() #sätt ny tid
 			if inst:
 				return

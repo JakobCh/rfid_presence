@@ -14,9 +14,12 @@ exelweekname = "Vecka"
 exelwords = ["In/Ut", "Datum", "Stämpel", "Lektionstid", "Frånvaro", "Anm"]
 
 #FTP
-#ftpuser = "narvaro"
-#ftppasswd = "rfidnas"
-#ftpserverip = "10.1.1.15"
+ftpuser = "narvaro"
+ftppasswd = "narvaro"
+
+ftpserverip = "10.1.1.15"
+ftpserverfolder = '/mnt/Storage/Larare'
+ftpmountpoint = '/mnt/Larare'
 ftpfolder = '/mnt/Larare/Närvaro/'
 ftpupdatetime = 60*10 #i sekunder (10 min default)
 
