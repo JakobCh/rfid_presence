@@ -16,11 +16,13 @@ class incheckdatabase():
 		#[namn, tid, in eller ut checkning]
 		self.savepath = config.exelsavepath
 		
-		
 		self.load() #kör load function för att ladda in databas filen in i self.data
-		self.lessontime = 60*80 #80 min lektionstid
-		self.maxCheckinTime = self.lessontime + 60*10 #lektions tid + 10
-		self.checkincooldown = 60 #1 minut
+		self.lessontime = config.lessontime
+		#60*80 #80 min lektionstid
+		self.maxCheckinTime = config.maxCheckinTime
+		#self.lessontime + 60*10 #lektions tid + 10
+		self.checkincooldown = config.checkincooldown
+		#60 #1 minut
 		
 	def cleanup(self, days=10):
 		currenttime = time.time()
