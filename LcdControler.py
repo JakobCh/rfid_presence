@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import smbus
 import time
@@ -68,7 +68,7 @@ class LcdControler():
 		
 	def lcd_string(self, message, line):
 		# Send string to display
-		message = message.replace("å", "a").replace("ä", "a").replace("ö", "o")
+		message = message.replace("Ã¤", "a").replace("Ã¥", "a").replace("Ã¶", "o")
 		message = message.ljust(self.LCD_WIDTH," ")
 		self.lcd_byte(line, self.LCD_CMD)
 		for i in range(self.LCD_WIDTH):

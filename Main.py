@@ -253,7 +253,7 @@ if len(sys.argv) == 2:
 			(status,TagType) = MIFAREREADER.MFRC522_Request(MIFAREREADER.PICC_REQIDL) #måste köras innan MIFAREREADER.MFRC522_Anticoll(), ansluter till tagen??
 			if status == MIFAREREADER.MI_OK:
 				print("Found tag")
-			
+				
 			(status,uid) = MIFAREREADER.MFRC522_Anticoll() #försök läsa uid från tagen,
 			if status == MIFAREREADER.MI_OK: #om det gick bra
 				
@@ -265,9 +265,6 @@ if len(sys.argv) == 2:
 					inorout, cooldown = checkbase.addData(user, time.time())
 					if cooldown:
 						print("User:" + user + " Tag:" + tagid + " is on cooldown")
-						lcd.lcd_string(shortuser, lcd.LCD_LINE_1)
-						lcd.lcd_string("FEL", lcd.LCD_LINE_2)
-						time.sleep(2)
 						lcd.lcd_string("du har nyss", lcd.LCD_LINE_1)
 						lcd.lcd_string("kommit in/ut", lcd.LCD_LINE_2)
 					else:
