@@ -5,5 +5,5 @@ then
 	echo "Rfid_presence is already running."
 else
 	echo "Rfid_presence is starting up."
-	nohup python Main.py run &
+	nohup python -u Main.py run &
 fi
