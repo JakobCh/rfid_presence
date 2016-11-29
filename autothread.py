@@ -28,8 +28,8 @@ def autothread(checkbase, tagdb, inst=False):
 			threadprint("Mounting sftp server..")
 			
 			#mount file system..
-			os.system('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin << "' + config.ftppasswd + '"')
-			threadprint('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin << "' + config.ftppasswd + '"')
+			os.system('echo "' + config.ftppasswd + '" | sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin')
+			threadprint('echo "' + config.ftppasswd + '" | sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin')
 			
 			
 			if os.path.isdir(config.ftpfolder): #if the mount succeeded
