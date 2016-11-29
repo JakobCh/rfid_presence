@@ -28,14 +28,15 @@ def autothread(checkbase, tagdb, inst=False):
 			threadprint("Mounting sftp server..")
 			
 			#mount file system..
-			os.system('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin <<< "' + config.ftppasswd + '"')
-			print('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin <<< "' + config.ftppasswd + '"')
+			os.system('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin << "' + config.ftppasswd + '"')
+			threadprint('sshfs ' + config.ftpuser + '@' + config.ftpserverip + ':' + config.ftpserverfolder + ' ' + config.ftpmountpoint + ' -o password_stdin << "' + config.ftppasswd + '"')
 			
 			
 			if os.path.isdir(config.ftpfolder): #if the mount succeeded
+				threadprint("Copying files..")
 				os.system('cp -r exel/ ' + config.ftpfolder)
 			
-				#unmount file system
+				threadprint("Unmounting..")
 				os.system('sudo umount ' + config.ftpmountpoint)
 			
 				threadprint("DONE")
