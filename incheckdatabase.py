@@ -140,8 +140,12 @@ class incheckdatabase():
 		starttime = 0
 		gonetime = 0
 		templist = []
+		currenttime = time.time()
 		for i in self.data:
 			if i[0] == name:
+				if self.timeformat4(i[1]) != self.timeformat4(currenttime):
+					continue
+			
 				#print(i[0])
 				if i[2]:
 					inut = "In"
