@@ -100,7 +100,7 @@ class incheckdatabase():
 		
 	def timeformat3(self, ti): #tid till datum
 		#return time.strftime("%e/%m/%Y", time.localtime(ti))
-		return time.strftime("%Y-%m-%e", time.localtime(ti)).replace(" ", "") # år mänad dag
+		return time.strftime("%Y-%m-%e", time.localtime(ti)).replace(" ", "0") # år mänad dag
 		
 	def timeformat4(self, ti): #vecka
 		return time.strftime("%W", time.localtime(ti))
