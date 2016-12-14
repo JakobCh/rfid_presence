@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ï»¿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import pickle
@@ -10,13 +10,13 @@ import config
 
 class incheckdatabase():
 	def __init__(self):
-		self.filepath = config.databasefolder + config.incheckdatabasefile #sät databas filen till den i configen
-		self.data = [] #här lagrar vi al skit
-		#datan ser ut såhär =
+		self.filepath = config.databasefolder + config.incheckdatabasefile #sÃ¤t databas filen till den i configen
+		self.data = [] #hÃ¤r lagrar vi al skit
+		#datan ser ut sÃ¥hÃ¤r =
 		#[namn, tid, in eller ut checkning]
 		self.savepath = config.exelsavepath
 		
-		self.load() #kör load function för att ladda in databas filen in i self.data
+		self.load() #kÃ¶r load function fÃ¶r att ladda in databas filen in i self.data
 		self.lessontime = config.lessontime
 		#60*80 #80 min lektionstid
 		self.maxCheckinTime = config.maxCheckinTime
@@ -33,56 +33,56 @@ class incheckdatabase():
 		
 		
 	def save(self):
-		with open(self.filepath, "wb") as f: #öppna database filen 
+		with open(self.filepath, "wb") as f: #Ã¶ppna database filen 
 			pickle.dump(self.data, f, 2) #ta self.data och spara i filen
 			
 	def load(self):
-		try: #försök
-			with open(self.filepath) as f: #öppna database filen
+		try: #fÃ¶rsÃ¶k
+			with open(self.filepath) as f: #Ã¶ppna database filen
 				self.data = pickle.load(f) #ladda in datan i filen till self.data
-		except: #om något gick fel
-			self.data = [] #så blir self.data tom
+		except: #om nÃ¥got gick fel
+			self.data = [] #sÃ¥ blir self.data tom
 			
 	def addData(self, name, tim): #namn och vilken tid
-		inorout = True #False är ute och true är inne, sate den till true ifall det var första gången man någonsin har checkat in
-		namechecktemp = self.getLastCheckinFromName(name) #få sista incheckningen från det namnet
-		if not namechecktemp == []: #om vi hitta en inceckning från namenet
-			inorout = namechecktemp[2] #sät inorout till den sista incheckninges värde
-			inorout = not inorout #invertera det så om man har gått in så går man nu ut
+		inorout = True #False Ã¤r ute och true Ã¤r inne, sate den till true ifall det var fÃ¶rsta gÃ¥ngen man nÃ¥gonsin har checkat in
+		namechecktemp = self.getLastCheckinFromName(name) #fÃ¥r sista incheckningen frÃ¥n det namnet
+		if not namechecktemp == []: #om vi hitta en inceckning frÃ¥n namenet
+			inorout = namechecktemp[2] #sÃ¤t inorout till den sista incheckninges vÃ¤rde
+			inorout = not inorout #invertera det sÃ¥ om man har gÃ¥tt in sÃ¥ gÃ¥r man nu ut
 			lastcheckintime = namechecktemp[1]
 		else:
 			lastcheckintime = 0
 		
-		if time.time() - lastcheckintime > self.checkincooldown: #om det har gått self.checkincooldown sedan sista incheckningen så
-			self.data.append([name, tim, inorout]) #läg in en ny checkning
+		if time.time() - lastcheckintime > self.checkincooldown: #om det har gÃ¥tt self.checkincooldown sedan sista incheckningen sÃ¥
+			self.data.append([name, tim, inorout]) #lÃ¤g in en ny checkning
 			self.save() #spara databasen
-			return inorout, False #vi sickar tilbacka om det var en incheckning eller en utcheckning och att tagen inte var på cooldown
-		else: #om det inte har gått self.checkincooldown sedan sista inceckningen
-			return inorout, True #sicka tillbacka true eftersom det är på cooldown
+			return inorout, False #vi sickar tilbacka om det var en incheckning eller en utcheckning och att tagen inte var pÃ¥ cooldown
+		else: #om det inte har gÃ¥tt self.checkincooldown sedan sista inceckningen
+			return inorout, True #sicka tillbacka true eftersom det Ã¤r pÃ¥ cooldown
 		
-	def updateMaxTime(self): #andvänds för att kolla om någon är incheckad för länge
+	def updateMaxTime(self): #andvÃ¤nds fÃ¶r att kolla om nÃ¥gon Ã¤r incheckad fÃ¶r lÃ¤nge
 		for name in self.getNames(): #loopa igenom alla namn vi har sparade
-			namecheckin = self.getLastCheckinFromName(name) #få den sista in/ut checkningen från det namnet
+			namecheckin = self.getLastCheckinFromName(name) #fÃ¥ den sista in/ut checkningen frÃ¥n det namnet
 			if namecheckin[2] == True: #om det var en incheckning
-				if time.time() - namecheckin[1] > self.maxCheckinTime: #om inceckningen hände för mer än self.maxCheckinTime sen så
-					self.addData(namecheckin[0], namecheckin[1]) #läger vi in en ny utcheckning samma tid som dom kom in
+				if time.time() - namecheckin[1] > self.maxCheckinTime: #om inceckningen hÃ¤nde fÃ¶r mer Ã¤n self.maxCheckinTime sen sÃ¥
+					self.addData(namecheckin[0], namecheckin[1]) #lÃ¤ger vi in en ny utcheckning samma tid som dom kom in
 					print(name + " hit max checkin time")
 					
 		
 	def getLastCheckinFromName(self, nam):
-		chek = [] #sätter chek till en tom lista ifall man inte hittar någon med det namnet
-		for i in self.data: #gå igenom databasen
-			if i[0] == nam: #om namnet matchar så
-				chek = i #sätter vi chek till den listan i databasen
-						 #på detta set så får vi den sista listan med det namnet kvar efter
+		chek = [] #sÃ¤tter chek till en tom lista ifall man inte hittar nÃ¥gon med det namnet
+		for i in self.data: #gÃ¥ igenom databasen
+			if i[0] == nam: #om namnet matchar sÃ¥
+				chek = i #sÃ¤tter vi chek till den listan i databasen
+						 #pÃ¥ detta set sÃ¥ fÃ¥r vi den sista listan med det namnet kvar efter
 				
-		return chek #sicka tillbaka den sista listan med namnet eller bara [] om vi inte hitta någon 
+		return chek #sicka tillbaka den sista listan med namnet eller bara [] om vi inte hitta nÃ¥gon 
 		
 	def namedatasort(self, name):
-		namelist = [] #listan som vi kommer ha all data som har med name och göra
-		for i in self.data: #gå igenom vår data
-			if i[0] == name: #om datan har rätt namn som vi letar efter
-				namelist.append(i) #läg till datan i vår lista
+		namelist = [] #listan som vi kommer ha all data som har med name och gÃ¶ra
+		for i in self.data: #gÃ¥ igenom vÃ¥r data
+			if i[0] == name: #om datan har rÃ¤tt namn som vi letar efter
+				namelist.append(i) #lÃ¤g till datan i vÃ¥r lista
 		return namelist #sicka tillbacka listan
 		
 	def getNames(self):
@@ -100,16 +100,16 @@ class incheckdatabase():
 		
 	def timeformat3(self, ti): #tid till datum
 		#return time.strftime("%e/%m/%Y", time.localtime(ti))
-		return time.strftime("%Y-%m-%e", time.localtime(ti)).replace(" ", "") # år månad dag
+		return time.strftime("%Y-%m-%e", time.localtime(ti)).replace(" ", "") # Ã¥r mÃ¤nad dag
 		
 	def timeformat4(self, ti): #vecka
 		return time.strftime("%W", time.localtime(ti))
 		
-	def timeformat5(self, ti): #år
+	def timeformat5(self, ti): #Ã¥r
 		return time.strftime("%Y", time.localtime(ti))
 		
 	def dump(self):
-		for i in self.data: #gå igenom datan
+		for i in self.data: #gÃ¥ igenom datan
 			#print(i)
 			print(i[0], self.timeformat(i[1]), i[2]) #skriv ut namn, tid och on dom gick in eller ut
 			
@@ -142,10 +142,10 @@ class incheckdatabase():
 		templist = []
 		currenttime = time.time()
 		for i in self.data:
+			if int(self.timeformat4(i[1])) != int(self.timeformat4(currenttime)): #if it isnt the current week then
+				continue #skip this loop
+				
 			if i[0] == name:
-				if self.timeformat4(i[1]) != self.timeformat4(currenttime):
-					continue
-			
 				#print(i[0])
 				if i[2]:
 					inut = "In"
