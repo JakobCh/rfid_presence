@@ -3,7 +3,7 @@ databasefolder = "databases/"
 tagdatabasefile = "tagdatabase.pickle"  #stores name-class-tagid records     [tagid,name,class]
 incheckdatabasefile = "inoroutdatabase.pickle" #stores all checkin/outs         [name, time, in/out]
 
-lessontime = 60*80 #80 min
+lessontime = 60*80*2 + 60*20 #160 min + 20 min
 maxCheckinTime = lessontime + 60*10 #lesson time plus 10 min
 checkincooldown = 60 #1 min, cooldown between checkins
 
