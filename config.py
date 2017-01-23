@@ -18,9 +18,9 @@ ftpuser = "narvaro"
 ftppasswd = "narvaro"
 
 ftpserverip = "10.1.1.15"
-ftpserverfolder = '/mnt/Storage/Larare'
-ftpmountpoint = '/mnt/Larare'
-ftpfolder = '/mnt/Larare/Närvaro/'
+ftpserverfolder = '/mnt/da1-backup/Närvaro' #folder on the server
+ftpmountpoint = '/mnt/Närvaro' #were we mount it
+ftpfolder = '/mnt/Närvaro/' #were we write our files to
 ftpupdatetime = 60*10 #i sekunder (10 min default)
 
 
