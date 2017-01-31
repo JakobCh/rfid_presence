@@ -39,7 +39,7 @@ def autothread(checkbase, tagdb, inst=False):
 				threadprint("Unmounting..")
 				os.system('sudo umount ' + config.ftpmountpoint)
 				threadprint("Trying to remove files left in mountpoint")
-				os.system('sudo rm -r ' + config.ftpfolder + exelsavepath) #/mnt/Närvaro/exel/
+				os.system('sudo rm -r ' + config.ftpfolder + config.exelsavepath) #/mnt/Närvaro/exel/
 			
 				threadprint("DONE")
 			else:
