@@ -18,17 +18,17 @@ setup raspbian
 		
 		Chance Timezone
 		
-	2. Chance User Password #ändra lösen för admin kontot
+	2. Chance User Password #Ã¤ndra lÃ¶sen fÃ¶r admin kontot
 	
 	9. Advanced Options
 	
 		A2 Hostname #Om du vill
 		
-		A4 SSH JA #Andvändbart och andvänds för att sicka över excel fillerna
+		A4 SSH JA #AndvÃ¤ndbart och andvÃ¤nds fÃ¶r att sicka Ã¶ver excel fillerna
 		
-		A5 SPI JA #Andvänds för rfid läsaren
+		A5 SPI JA #AndvÃ¤nds fÃ¶r rfid lÃ¤saren
 		
-		A6 I2C JA #Andvänds för lcd-skärmen
+		A6 I2C JA #AndvÃ¤nds fÃ¶r lcd-skÃ¤rmen
 	
 
 Install python-dev and git
@@ -44,6 +44,7 @@ Install openpyxl #excel python library
 	sudo pip install openpyxl
 
 Install ncftp
+
 	sudo apt-get install ncftp
 	
 Install SPI-Py
